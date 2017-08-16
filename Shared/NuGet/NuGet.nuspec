@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Zebble.Switch</id>
-    <version>1.31.232</version>
+    <version>1.31.233</version>
     <title>Switch for Zebble (Xamarin)</title>
     <projectUrl>https://github.com/Geeksltd/Zebble.Switch</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/Geeksltd/Zebble.Switch/master/Shared/NuGet/Icon.png</iconUrl>
