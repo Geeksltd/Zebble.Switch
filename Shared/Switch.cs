@@ -35,8 +35,7 @@ namespace Zebble
         {
             await SetPseudoCssState("checked", Checked);
 
-            if (IsAlreadyRendered())
-                await Toggle.Animate(AnimationDuration, x => PositionToggle());
+            if (IsRendered()) await Toggle.Animate(AnimationDuration, x => PositionToggle());
         }
 
         void PositionToggle()
