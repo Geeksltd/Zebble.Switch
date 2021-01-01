@@ -1,4 +1,4 @@
-[logo]: https://raw.githubusercontent.com/Geeksltd/Zebble.Switch/master/Shared/NuGet/Icon.png "Zebble.Switch"
+﻿[logo]: https://raw.githubusercontent.com/Geeksltd/Zebble.Switch/master/icon.png "Zebble.Switch"
 
 
 ## Zebble.Switch
