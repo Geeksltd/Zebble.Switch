@@ -5,15 +5,16 @@ namespace Zebble
     using System.Threading.Tasks;
     using Olive;
 
-    public class Switch : View, FormField.IControl, IBindableInput
+    public class Switch : View, IBindableInput
     {
         bool @checked, IsToggling;
-
+        event InputChanged InputChanged;
         public readonly AsyncEvent CheckedChanged = new AsyncEvent(ConcurrentEventRaisePolicy.Queue);
         public readonly Canvas Bar = new Canvas { Id = "Bar" };
         public readonly Canvas Toggle = new Canvas { Id = "Toggle" };
 
         public Alignment Alignment = Alignment.Right;
+        event InputChanged IBindableInput.InputChanged { add => InputChanged += value; remove => InputChanged -= value; }
 
         public Switch()
         {
@@ -34,8 +35,8 @@ namespace Zebble
 
         async Task UpdateCheckedState()
         {
+            InputChanged?.Invoke(nameof(Checked));
             await SetPseudoCssState("checked", Checked);
-
             if (IsRendered()) await Toggle.Animate(AnimationDuration, x => PositionToggle());
         }
 
@@ -96,18 +97,10 @@ namespace Zebble
             }
         }
 
-        object FormField.IControl.Value
-        {
-            get => Checked;
-            set => Checked = value.ToStringOrEmpty().ToLowerOrEmpty() == "true";
-        }
-
         public override void Dispose()
         {
             CheckedChanged?.Dispose();
             base.Dispose();
         }
-
-        public void AddBinding(Bindable bindable) => CheckedChanged.Handle(() => bindable.SetUserValue(Checked));
     }
 }

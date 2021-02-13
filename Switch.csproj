@@ -6,7 +6,7 @@
     <RootNamespace>Zebble</RootNamespace>
     <PackageId>Zebble.Switch</PackageId>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <Version>1.31.243.0</Version>
+    <Version>1.31.244.0</Version>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <DefineConstants>$(DefineConstants)</DefineConstants>
@@ -64,11 +64,14 @@
     <None Remove="Zebble-LicenseAgreement.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zebble" Version="4.5.445" />
+    <PackageReference Include="Zebble" Version="4.5.474" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Android\" />
     <Folder Include="iOS\" />
     <Folder Include="UWP\" />
   </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /y E:\Projects\Zebble\Plugins\Switch\bin\Debug\uap10.0.18362\Zebble.Switch.dll  E:\Nuget\packages\zebble.switch\1.31.243\lib\uap10.0.18362" />
+  </Target>
 </Project>
