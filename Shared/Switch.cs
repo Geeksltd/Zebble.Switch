@@ -35,7 +35,6 @@ namespace Zebble
 
         async Task UpdateCheckedState()
         {
-            InputChanged?.Invoke(nameof(Checked));
             await SetPseudoCssState("checked", Checked);
             if (IsRendered()) await Toggle.Animate(AnimationDuration, x => PositionToggle());
         }
@@ -54,15 +53,15 @@ namespace Zebble
         {
             await base.OnInitializing();
 
-            Tapped.Handle(ToggleChanged);
-            Swiped.Handle(ToggleChanged);
-            PanFinished.Handle(ToggleChanged);
+            Tapped.Handle(UserToggled);
+            Swiped.Handle(UserToggled);
+            PanFinished.Handle(UserToggled);
 
             await Add(Bar);
             await Add(Toggle);
         }
 
-        public async Task ToggleChanged()
+        public async Task UserToggled()
         {
             if (IsToggling) return;
             else IsToggling = true;
@@ -75,6 +74,8 @@ namespace Zebble
             {
                 IsToggling = false;
             }
+
+            InputChanged?.Invoke(nameof(Checked));
         }
 
         public override async Task OnPreRender()
