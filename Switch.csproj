@@ -1,12 +1,12 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
   <PropertyGroup>
-    <TargetFrameworks>Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
+    <TargetFrameworks>Xamarin.iOS10;MonoAndroid13.0</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);uap10.0.18362</TargetFrameworks>
     <AssemblyName>Zebble.Switch</AssemblyName>
     <RootNamespace>Zebble</RootNamespace>
     <PackageId>Zebble.Switch</PackageId>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <Version>1.31.245.0</Version>
+    <Version>1.31.246.0</Version>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <DefineConstants>$(DefineConstants)</DefineConstants>
@@ -24,7 +24,7 @@
     <PackageReleaseNotes>Minor fixes</PackageReleaseNotes>
     <Owners>Geeks Ltd</Owners>
     <Authors>Geeks Ltd</Authors>
-    <Copyright>Geeks Ltd 2021, All rights reserved.</Copyright>
+    <Copyright>Geeks Ltd 2023, All rights reserved.</Copyright>
     <DisableExtraReferences>true</DisableExtraReferences>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
@@ -64,7 +64,7 @@
     <None Remove="Zebble-LicenseAgreement.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Zebble" Version="4.5.474" />
+    <PackageReference Include="Zebble" Version="4.5.673" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Android\" />
@@ -72,6 +72,6 @@
     <Folder Include="UWP\" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy /y E:\Projects\Zebble\Plugins\Switch\bin\Debug\uap10.0.18362\Zebble.Switch.dll  E:\Nuget\packages\zebble.switch\1.31.243\lib\uap10.0.18362" />
+    <Exec Command="update-local-nuget-cache $(TargetDir)" />
   </Target>
 </Project>
